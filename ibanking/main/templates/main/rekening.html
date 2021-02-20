@@ -1,0 +1,39 @@
+{% extends 'main/base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block judul %}
+Rekening
+{% endblock %}
+
+{% block konten %}
+  <form method="post" action="{% url 'main-rekening' %}">
+    {% csrf_token%}
+    <fieldset class="form-group">
+      {{form|crispy}}
+    </fieldset>
+    <div class="mt-2">
+      <button type="submit" class="btn btn-primary">Tambah Rekening</button>
+    </div>
+  </form>
+{% if rekening %}
+  <div class="row row-cols-auto">
+  {% for r in rekening %}
+    <div class="col">
+      <div class="card mt-2 shadow" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">Rekening</h5>
+          <h6 class="card-subtitle mb-2">{{r.no_rekening}}</h6>
+          <h6 class="card-subtitle mb-2">Saldo : Rp{{r.saldo}}</h6>
+          <a href="{% url 'main-delete' r.id %}" class="card-link">Delete</a>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+  </div>
+
+{% else %}
+  <p class="fs-4">Anda Belum Punya Rekening</p>
+{% endif %}
+
+{% endblock %}

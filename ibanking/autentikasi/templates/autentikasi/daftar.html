@@ -1,0 +1,24 @@
+{% extends 'main/base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block judul %}
+Buat Akun
+{% endblock %}
+
+{% block konten %}
+<form method="post" >
+	{% csrf_token%}
+	<fieldset class="form-group">
+		{{form|crispy}}
+	</fieldset>
+	<div class="form-group">
+		<button type="submit" class="btn btn-primary">Daftar</button>
+	</div>
+	
+</form>
+{% endblock %}
+
+
+
+

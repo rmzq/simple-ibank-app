@@ -1,0 +1,12 @@
+{% extends 'main/base.html' %}
+
+
+{% block judul %}
+Keluar
+{% endblock %}
+
+{% block konten %}
+	<p class="fw-bold fs-3">Anda Sudah Keluar</p>
+	<br>
+	<small><a href="{% url 'masuk' %}">Masuk Lagi!</a></small>
+{% endblock %}

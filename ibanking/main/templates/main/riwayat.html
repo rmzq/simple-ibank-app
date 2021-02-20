@@ -1,0 +1,49 @@
+{% extends 'main/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block judul %}
+Riwayat
+{% endblock %}
+
+{% block konten %}
+<form method="post" action="{% url 'main-riwayat' %}">
+		{% csrf_token%}
+	<fieldset class="form-group">
+		{{form.as_table}}
+	</fieldset>
+	<div class="mt-2">
+		<button type="submit" class="btn btn-primary">Lihat Riwayat</button>
+	</div>
+</form>
+
+<table class="table caption-top table-primary">
+	<caption>Riwayat Transaksi</caption>
+	<thead>
+		<tr>
+			<th scope="col">Waktu</th>
+			<th scope="col">Dari Rekening</th>
+			<th scope="col">Ke Rekening</th>
+			<th scope="col">Jumlah</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% if riwayat %}
+			{% for r in riwayat %}
+				<tr>
+					<th scope="row">{{r.tanggal_transaksi}}</th>
+					<td>{{r.pengirim}}</td>
+					<td>{{r.penerima}}</td>
+					<td>{{r.jumlah}}</td>
+				</tr>
+			{% endfor %}
+		{% else %}
+			<tr>
+				<th>
+					<p>tidak ada transaksi</p>
+				</th>
+			</tr>
+		{% endif %}
+	</tbody>
+</table>
+
+{% endblock %}

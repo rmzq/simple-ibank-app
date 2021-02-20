@@ -1,0 +1,17 @@
+{% extends 'main/base.html' %}
+{% block judul %}
+Profil
+{% endblock %}
+
+{% block konten %}
+	<p class="fs-4 fw-bold">
+		Hai 
+		{% if user.is_authenticated %}
+			{{user.username}}
+		{% endif %}
+	</p>
+{% endblock %}
+
+
+
+
